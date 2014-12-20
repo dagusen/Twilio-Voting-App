@@ -1,0 +1,85 @@
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">    <title>Dynamic Poll: Using Twilio Rest API</title>
+</head>
+<body>
+    <div style="margin-left: 20px;">
+        <form class="form-horizontal" action="{{ action }}" method="POST">{% csrf_token %}
+            <fieldset>
+
+        <!-- Form Name -->
+        <legend>Dynamic Poll: Using Twilio Rest API</legend>
+
+        <div style="width: 350px" class="alert alert-info" role="alert">
+            <b>Create A New Poll Using The Form Below:</b>
+        </div>
+
+        <!-- Text input-->
+        <div class="control-group">
+          <label class="control-label" for="id_Poll_Title"><b>Question</b></label>
+          <div class="controls">
+            <input id="id_Poll_Title" name="Poll_Title" type="text" placeholder="" class="input-xlarge" required="">
+            <p class="help-block">Required</p>
+          </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="control-group">
+          <label class="control-label" for="id_Option1"><b>Option One</b></label>
+          <div class="controls">
+            <input id="id_Option1" name="Option1" type="text" placeholder="" class="input-large">
+            <p class="help-block">Required</p>
+          </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="control-group">
+          <label class="control-label" for="id_Option2"><b>Option Two</b></label>
+          <div class="controls">
+            <input id="id_Option2" name="Option2" type="text" placeholder="" class="input-large" required="">
+            <p class="help-block">Required</p>
+          </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="control-group">
+          <label class="control-label" for="id_Option3"><b>Option Three</b></label>
+          <div class="controls">
+            <input id="id_Option3" name="Option3" type="text" placeholder="" class="input-large">
+
+          </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="control-group">
+          <label class="control-label" for="id_Option4"><b>Option Four</b></label>
+          <div class="controls">
+            <input id="id_Option4" name="Option4" type="text" placeholder="" class="input-large">
+
+          </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="control-group">
+          <label class="control-label" for="id_Option5"><b>Option Five</b></label>
+          <div class="controls">
+            <input id="id_Option5" name="Option5" type="text" placeholder="" class="input-large">
+
+          </div>
+        </div>
+
+        <!-- Button -->
+        <div class="control-group">
+          <label class="control-label" for="Save"></label>
+          <div class="controls">
+            <button type="submit" id="Save" name="Save" class="btn btn-success">Submit &amp; Continue</button>
+          </div>
+        </div>
+
+    </fieldset>
+        </form>
+    </div>
+
+</body>
+</html>

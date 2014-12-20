@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Dynamic Poll: Using Twilio Rest API</title>
+    <!-- 1. Add these JavaScript inclusions in the head of your page -->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="http://code.highcharts.com/highcharts.js"></script>
+    <legend>Dynamic Poll: Using Twilio Rest API</legend>
+
+    <!-- 2. Add the JavaScript to initialize the chart on document ready -->
+    <script type="text/javascript">
+        var ser = [];
+        var intervalId;
+
+        {% if poll_data.Poll_Title %}
+            var title = "{{ poll_data.Poll_Title }}";
+        {% endif %}
+        {% if poll_data.Option1 %}
+            var option1 = "{{ poll_data.Option1 }}";
+            ser.push(option1);
+        {% endif %}
+        {% if poll_data.Option2 %}
+            var option2 = "{{ poll_data.Option2 }}";
+            ser.push(option2);
+        {% endif %}
+        {% if poll_data.Option3 %}
+            var option3 = "{{ poll_data.Option3 }}";
+            ser.push(option3);
+        {% endif %}
+        {% if poll_data.Option4 %}
+            var option4 = "{{ poll_data.Option4 }}";
+            ser.push(option4);
+        {% endif %}
+        {% if poll_data.Option5 %}
+            var option5 = "{{ poll_data.Option5 }}";
+            ser.push(option5);
+        {% endif %}
+
+
+        //var ser =[a,b]
+       var options;
+       var request;
+       $(function() {
+        options = {
+            title: {
+                text: 'Poll Results: ' + "{{ poll_data.Poll_Title }}",
+                style: {
+                "padding-bottom": 30,
+                fontWeight: 'bold'}
+            },
+            chart: {
+                renderTo: 'container',
+                type: 'column'
+            },
+             xAxis: {
+            categories: ser
+            },
+            yAxis: {
+                title: {
+                    text: 'Poll Count',
+                    useHTML: true,
+                    style: {
+                        "-webkit-transform": "rotate(90deg)",
+                        "-moz-transform": "rotate(90deg)",
+                        "-o-transform": "rotate(90deg)"
+                    }
+                }
+            },
+            //series: [{name: 'Poll Answers'}]
+             series: [{
+        name: 'Poll Answers'
+    }]
+        };
+
+        intervalId = setInterval(function(){
+        $.getJSON('/static/data.json', function(data) {
+        options.series[0].data=data;
+        var chart = new Highcharts.Chart(options);
+        });
+    }, 5000);
+    });
+
+    function killAjax() {
+        clearInterval(intervalId);
+        alert("Final Result: Polliing Has Stopped");
+    }
+    </script>
+
+</head>
+<body>
+    <div class="row-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <div id="container" style="width: 500px; height: 300px;
+                padding-top: 0.5cm;padding-left: 2cm;"></div>
+                <div align="center" style="margin-top: 0.5cm">
+                    <a onclick="killAjax()" class="btn btn-primary" >Final Result</a> &nbsp;
+                    <a href="/" class="btn btn-primary">New Poll</a>
+                    <form action="/get_hostname/" method="GET"><br>{% csrf_token %}
+                        <input name="fullname" type="submit" class="btn btn-primary" value="Stop Poll">
+                    </form>
+
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="container" style="width: 400px; height: 200px;
+                margin-right:30%;padding-top: .76cm;">
+
+                        <p style="font-size: 19px"><b>Poll Information:</b></p>
+                        <p><b>Phone Number: +1-650-826-3017</b></p>
+                        <p>
+                            <b>Question: {{ poll_data.Poll_Title }}</b><br><br>
+                            <b>Options:</b><br>
+                            {{ poll_data.Option1 }}<br>
+                            {{ poll_data.Option2 }}<br>
+                            {{ poll_data.Option3 }}<br>
+                            {{ poll_data.Option4 }}<br>
+                            {{ poll_data.Option5 }}<br>
+                        </p>
+                        <p>
+                            <b>Guidelines:</b> To vote, simply create a SMS with one <br>
+                            of the options above and  send it to +1-650-826-3017.<br>
+                        </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
