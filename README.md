@@ -14,4 +14,4 @@ Django, Highchart.js, Twilio API, Elastic Beanstalk, SQLite, Docker
 
 #####Note:
 Since the app uses a free Twilio number only one poll can be done at a time, as Twilio provides only one number for every free account. 
-In the future we plan to take this app further by adding features like user login with a Twilio number assigned to each user, poll logs for history and more
+In the future we plan to take this app further by adding features like user login with a Twilio number assigned to each user, poll logs for history and more.
