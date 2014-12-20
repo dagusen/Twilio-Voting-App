@@ -5,12 +5,13 @@ Implemented in Django, a voting web app using Twilio API that allowed users to c
 Django, Highchart.js, Twilio API, Elastic Beanstalk, SQLite, Docker
 
 #####Screen Shots:
-1. ![](https://github.com/srv89/Twilio-Voting-App/blob/master/images/1.png)
-2. ![](https://github.com/srv89/Twilio-Voting-App/blob/master/images/2.png)
-3. ![](https://github.com/srv89/Twilio-Voting-App/blob/master/images/3.png)
-4. ![](https://github.com/srv89/Twilio-Voting-App/blob/master/images/4.png)
-5. ![](https://github.com/srv89/Twilio-Voting-App/blob/master/images/5.png)
-6. ![](https://github.com/srv89/Twilio-Voting-App/blob/master/images/6.png)
+![](https://github.com/srv89/Twilio-Voting-App/blob/master/images/1.png)
+![](https://github.com/srv89/Twilio-Voting-App/blob/master/images/2.png)
+![](https://github.com/srv89/Twilio-Voting-App/blob/master/images/3.png)
+![](https://github.com/srv89/Twilio-Voting-App/blob/master/images/4.png)
+![](https://github.com/srv89/Twilio-Voting-App/blob/master/images/5.png)
+![](https://github.com/srv89/Twilio-Voting-App/blob/master/images/6.png)
 
 #####Note:
 Since the app uses a free Twilio number only one poll can be done at a time, as Twilio provides only one number for every free account. 
+In the future we plan to take this app further by adding features like user login with a Twilio number assigned to each user, poll logs for history and more
