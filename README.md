@@ -7,4 +7,4 @@ Django, Highchart.js, Twilio API, Elastic Beanstalk, SQLite, Docker
 #####Description:
 1. The home page of he web app. Here we create a new 
 ![](https://github.com/srv89/Twilio-Voting-App/blob/master/images/1.png)
-<img src="https://github.com/srv89/Twilio-Voting-App/blob/master/images/1.png" style="width:100px;height:100px">
+<img src="https://github.com/srv89/Twilio-Voting-App/blob/master/images/1.png" style="width:50px;height:50px">
