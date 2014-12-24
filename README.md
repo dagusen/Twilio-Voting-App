@@ -1,8 +1,9 @@
 Twilio-Polling-App
 ========
 Implemented in Django, a voting web app using Twilio API that allowed users to create dynamic polls, receive votes via SMS using Twilio and display voting result on a bar chart using Highchart.js.
+Live Demo: [Twilio](http://twiliopollapp.herokuapp.com)
 #####Technologies: 
-Django, Highchart.js, Twilio API, Elastic Beanstalk, SQLite, Docker
+Python, Django, Highchart.js, Twilio API, PostgreSQL, Heroku
 
 #####Screen Shots:
 ![](https://github.com/srv89/Twilio-Voting-App/blob/master/images/1.png)
