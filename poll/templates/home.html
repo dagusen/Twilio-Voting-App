@@ -1,85 +1,132 @@
 <html>
 <head>
+    <script type="text/javascript"> /* var bcf_settings = { buttonText:'Contact Us', buttonTop:'30%', language:'en_US' }; // Better Contact Form Settings */ (function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; js = d.createElement(s); js.id = id; js.src = "http://bettercontactform.com/contact/media/a/1/a19586a40888f4d9c9c3df3b149cb9fc0338c57c.js"; fjs.parentNode.insertBefore(js, fjs); }(document, "script", "bcf-render"));</script> <a id="bcf_trigger" href="http://bettercontactform.com" rel="bcf_trigger"></a>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">    <title>Dynamic Poll: Using Twilio Rest API</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">    
+    <title>Twilio Polling App</title>
+    <style> 
+    body {
+     margin: 0;
+     background: url('http://cdn.elegantthemes.com/blog/wp-content/uploads/2013/09/bg-10-full.jpg');
+     background-size: 1440px 800px;
+     background-repeat:no-repeat;
+     display: compact;
+     font: 13px/18px "Helvetica Neue", Helvetica, Arial, sans-serif;}
+    </style>
 </head>
 <body>
-    <div style="margin-left: 20px;">
-        <form class="form-horizontal" action="{{ action }}" method="POST">{% csrf_token %}
-            <fieldset>
-
-        <!-- Form Name -->
-        <legend>Dynamic Poll: Using Twilio Rest API</legend>
-
-        <div style="width: 350px" class="alert alert-info" role="alert">
-            <b>Create A New Poll Using The Form Below:</b>
-        </div>
-
-        <!-- Text input-->
-        <div class="control-group">
-          <label class="control-label" for="id_Poll_Title"><b>Question</b></label>
-          <div class="controls">
-            <input id="id_Poll_Title" name="Poll_Title" type="text" placeholder="" class="input-xlarge" required="">
-            <p class="help-block">Required</p>
-          </div>
-        </div>
-
-        <!-- Text input-->
-        <div class="control-group">
-          <label class="control-label" for="id_Option1"><b>Option One</b></label>
-          <div class="controls">
-            <input id="id_Option1" name="Option1" type="text" placeholder="" class="input-large">
-            <p class="help-block">Required</p>
-          </div>
-        </div>
-
-        <!-- Text input-->
-        <div class="control-group">
-          <label class="control-label" for="id_Option2"><b>Option Two</b></label>
-          <div class="controls">
-            <input id="id_Option2" name="Option2" type="text" placeholder="" class="input-large" required="">
-            <p class="help-block">Required</p>
-          </div>
-        </div>
-
-        <!-- Text input-->
-        <div class="control-group">
-          <label class="control-label" for="id_Option3"><b>Option Three</b></label>
-          <div class="controls">
-            <input id="id_Option3" name="Option3" type="text" placeholder="" class="input-large">
-
-          </div>
-        </div>
-
-        <!-- Text input-->
-        <div class="control-group">
-          <label class="control-label" for="id_Option4"><b>Option Four</b></label>
-          <div class="controls">
-            <input id="id_Option4" name="Option4" type="text" placeholder="" class="input-large">
-
-          </div>
-        </div>
-
-        <!-- Text input-->
-        <div class="control-group">
-          <label class="control-label" for="id_Option5"><b>Option Five</b></label>
-          <div class="controls">
-            <input id="id_Option5" name="Option5" type="text" placeholder="" class="input-large">
-
-          </div>
-        </div>
-
-        <!-- Button -->
-        <div class="control-group">
-          <label class="control-label" for="Save"></label>
-          <div class="controls">
-            <button type="submit" id="Save" name="Save" class="btn btn-success">Submit &amp; Continue</button>
-          </div>
-        </div>
-
-    </fieldset>
-        </form>
+  <div  class="navbar navbar-default navbar-float-top">
+    <div class="container">
+      <p class="navbar-text pull-left" style="font-size: 22px"><b>Twilio Polling App</b></p>
     </div>
+  </div>
 
+  <div class="container">
+    
+    <div class="row"> 
+      <div class="col-md-6">
+        <div style="margin-left: 20px;">
+          <form class="form-horizontal" action="{{ action }}" method="POST">{% csrf_token %}
+          <fieldset>
+
+          <!-- Form Name -->
+          
+
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="control-label" for="id_Poll_Title"><b>Poll Question:</b></label>
+            <div class="controls">
+              <input style="width:300px; font-size: 19px"id="id_Poll_Title" name="Poll_Title" type="text" placeholder="" class="form-control input-md-6" required="">
+            </div>
+          </div>
+
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="control-label" for="id_Option1"><b>Option One:</b></label>
+            <div class="controls">
+              <input style="width:200px" id="id_Option1" name="Option1" type="text" placeholder="" class="form-control input-md-6" required="">
+            </div>
+          </div>
+
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="control-label" for="id_Option2"><b>Option Two:</b></label>
+            <div class="controls">
+              <input style="width:200px" id="id_Option2" name="Option2" type="text" placeholder="" class="form-control input-md-6" required="">
+            </div>
+          </div>
+
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="control-label" for="id_Option3"><b>Option Three:</b></label>
+            <div class="controls">
+              <input style="width:200px" id="id_Option3" name="Option3" type="text" placeholder="" class="form-control input-md-6">
+
+            </div>
+          </div>
+
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="control-label" for="id_Option4"><b>Option Four:</b></label>
+            <div class="controls">
+              <input style="width:200px" id="id_Option4" name="Option4" type="text" placeholder="" class="form-control input-md-6">
+
+            </div>
+          </div>
+
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="control-label" for="id_Option5"><b>Option Five:</b></label>
+            <div class="controls">
+              <input style="width:200px" id="id_Option5" name="Option5" type="text" placeholder="" class="form-control input-md-6">
+
+            </div>
+          </div>
+
+          <!-- Button -->
+          <div class="form-group">
+            <label class="control-label" for="Save"></label>
+            <div class="controls">
+              <button style="width:150px" type="submit" id="Save" name="Save" class="btn btn-success">Submit &amp; Continue</button>
+            </div>
+          </div>
+
+          </fieldset>
+          </form>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="container" style="width: 400px; height: 200px; margin-right:30%;">
+          <p style="font-size: 19px"><b>Poll Information:</b></p>
+              <b>Important Note:</b> <br>
+              <ul>
+              <li>This app uses a Twilio trail account which requires to verify your phone number before you can send SMS messages to it from your phone number. More documentation: <a href="https://www.twilio.com/help/faq/twilio-basics/how-does-twilios-free-trial-work">Twilio Trail Account.</a></li>
+              <li>To verify your phone number please use the "Contact Us" form on the right.</li>
+              <li>Once we receive your request your phone number will be verified with Twilio and you would be provided complete access to the website. You will receive a seperate conformation email regarding the same.</li>
+              <li><b>Finally, this app is intented for demo purposes only.</b></li>
+              </ul>
+
+              <b>Guidelines:</b> <br>
+              <ul>
+              <li>Please verify your phone</li>
+              <li> To create a poll, simply create a question using the form on the left. Make sure you add atleast two options for polling to take place. </li>
+
+              <li>Click "Sumbit & Continue" once you poppulate the form. You will redirected to the Polling web page.</li>
+              </ul>
+          </p>
+
+        </div>  
+      </div>
+
+    </div>
+  </div>
+  
+  <div  class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container">
+      <p class="navbar-text pull-left">© 2014 - Developed By <a href="http://linkd.in/13YH1wk">Sarvesh Sadhoo</a> & <a href="https://www.linkedin.com/in/akshaymattoo">Akshay Mattoo</a>
+      </p>
+    </div>
+  </div>
 </body>
 </html>

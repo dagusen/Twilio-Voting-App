@@ -1,29 +1,25 @@
 """
-Django settings for classified project.
+Django settings for pollapp project.
 
 For more information on this file, see
-https://docs.djangoproject.com/en/1.6/topics/settings/
+https://docs.djangoproject.com/en/1.7/topics/settings/
 
 For the full list of settings and their values, see
-https://docs.djangoproject.com/en/1.6/ref/settings/
+https://docs.djangoproject.com/en/1.7/ref/settings/
 """
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 PROJECT_PATH = os.path.dirname(os.path.realpath(__file__))
-print PROJECT_PATH
+
 STATIC_PATH = os.path.join(PROJECT_PATH, 'static')
 
-STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
     STATIC_PATH,
 )
-#Login URLs
-LOGIN_URL = '/'
-LOGIN_REDIRECT_URL = '/device/'
-# Additional locations of static files
+
 STATICFILES_DIRS = (
     os.path.join(PROJECT_PATH, 'static'),
 )
@@ -34,16 +30,15 @@ STATICFILES_FINDERS = (
     #'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 # Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
+# See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 's9t(bi2xoelc=$%wlh&uk^t8+3eyj_a9i=yk=_s@9h+-n@el+#'
+SECRET_KEY = '$8a7hz38d+^uie&p4lamltohrq((dq+1*2u0rj-mdv!n%0rwdz'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
+TEMPLATE_DEBUG = True
 
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
@@ -64,7 +59,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 )
 
 
-
 TEMPLATE_DIRS = (
     os.path.join(PROJECT_PATH, 'templates'),
     #TEMPLATE_PATH,
@@ -72,6 +66,10 @@ TEMPLATE_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
 )
+
+ALLOWED_HOSTS = []
+
+
 # Application definition
 
 INSTALLED_APPS = (
@@ -81,8 +79,6 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.contenttypes',
-    'django.contrib.auth',
     'poll',
 )
 
@@ -91,6 +87,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
@@ -99,22 +96,22 @@ ROOT_URLCONF = 'pollapp.urls'
 
 WSGI_APPLICATION = 'pollapp.wsgi.application'
 
-ALLOWED_HOSTS = ['*']
 # Database
-# https://docs.djangoproject.com/en/1.6/ref/settings/#databases
+# https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'pollappmysql.db',                      # Or path to database file if using sqlite3.
+        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': '',                      # Or path to database file if using sqlite3.
+        'USER': '',
+        'PASSWORD': '',
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+        'PORT': '5432',                      # Set to empty string for default. Not used with sqlite3.
     }
 }
 
-ROOT_URLCONF = 'pollapp.urls'  
 # Internationalization
-# https://docs.djangoproject.com/en/1.6/topics/i18n/
+# https://docs.djangoproject.com/en/1.7/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
@@ -125,7 +122,10 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-STATIC_ROOT = ''
+
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.6/howto/static-files/
+# https://docs.djangoproject.com/en/1.7/howto/static-files/
+
+STATIC_URL = '/static/'
+STATIC_ROOT = ''

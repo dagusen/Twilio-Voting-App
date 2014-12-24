@@ -11,5 +11,7 @@ urlpatterns = patterns('',
     url(r'^$', views.poll),
     url(r'^display/$', views.display),
     url(r'^get_hostname/$', views.get_hostname),
+    url(r'^disclosure/$', views.disclosure),
+   
 
 )

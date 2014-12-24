@@ -2,19 +2,17 @@ __author__ = 'srv'
 from twilio.rest import TwilioRestClient
 import json
 from pollapp import settings
-print settings.PROJECT_PATH
 from poll.models import Poll
 import threading
 
-#Twilio Account and Toked Ids
-account = ""
-token = ""
+twilio_account_id = ""
+twilio_token = ""
 
-client = TwilioRestClient(account, token)
+client = TwilioRestClient(twilio_account_id, twilio_token)
 
 t= None
 def clear_message():
-    for message in client.messages.list(to=): # to is set to a Twilio phone number on which you would receive sms. Eg:+19992223333
+    for message in client.messages.list(to=+100000000000): # Twilio Number
         message.delete_instance()
 
 
@@ -51,12 +49,13 @@ def get_twilio_msg():
         to_append = [str(poll_opt5), 0]
         json_array.append(to_append)
 
-    for message in client.messages.list(to=+16508263017):
+    for message in client.messages.list(to=+10000000000): # Twilio Number
         for data in json_array:
-            if message.body.lower() == data[0].lower():
+            if message.body.lower().replace(" ", "") == data[0].lower().replace(" ", ""):
+                print "Ok"
                 data[1] += 1
     json_data = json.dumps(json_array)
-    with open('../PollApp/poll/static/data.json', 'w') as json_output:
+    with open('/app/poll/static/data.json', 'w') as json_output:
         json_output.write(json_data)
 
     t = threading.Timer(5, get_twilio_msg)

@@ -1,16 +1,16 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
+    <script type="text/javascript"> /* var bcf_settings = { buttonText:'Contact Us', buttonTop:'30%', language:'en_US' }; // Better Contact Form Settings */ (function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; js = d.createElement(s); js.id = id; js.src = "http://bettercontactform.com/contact/media/a/1/a19586a40888f4d9c9c3df3b149cb9fc0338c57c.js"; fjs.parentNode.insertBefore(js, fjs); }(document, "script", "bcf-render"));</script> <a id="bcf_trigger" href="http://bettercontactform.com" rel="bcf_trigger"></a>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Dynamic Poll: Using Twilio Rest API</title>
+    <title>Twilio Polling App</title>
     <!-- 1. Add these JavaScript inclusions in the head of your page -->
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script type="text/javascript" src="http://code.highcharts.com/highcharts.js"></script>
-    <legend>Dynamic Poll: Using Twilio Rest API</legend>
 
     <!-- 2. Add the JavaScript to initialize the chart on document ready -->
     <script type="text/javascript">
@@ -55,12 +55,14 @@
             },
             chart: {
                 renderTo: 'container',
-                type: 'column'
+                type: 'column',
             },
              xAxis: {
-            categories: ser
+                categories: ser,
+
             },
             yAxis: {
+                allowDecimals: false,
                 title: {
                     text: 'Poll Count',
                     useHTML: true,
@@ -87,35 +89,54 @@
 
     function killAjax() {
         clearInterval(intervalId);
-        alert("Final Result: Polliing Has Stopped");
+        alert("Final Result: Polling Has Stopped");
     }
     </script>
+    <style> 
+      body {
+     margin: 0;
+     background: url('http://cdn.elegantthemes.com/blog/wp-content/uploads/2013/09/bg-10-full.jpg');
+     background-size: 1440px 800px;
+     background-repeat:no-repeat;
+     display: compact;
+     font: 13px/18px "Helvetica Neue", Helvetica, Arial, sans-serif;}
+    </style>
 
 </head>
 <body>
+    <div  class="navbar navbar-default navbar-float-top">
+        <div class="container">
+          <p class="navbar-text pull-left" style="font-size: 22px"><b>Twilio Polling App</b></p>
+        </div>
+    </div>
     <div class="row-fluid">
         <div class="row">
             <div class="col-md-6">
                 <div id="container" style="width: 500px; height: 300px;
                 padding-top: 0.5cm;padding-left: 2cm;"></div>
-                <div align="center" style="margin-top: 0.5cm">
-                    <a onclick="killAjax()" class="btn btn-primary" >Final Result</a> &nbsp;
+                <div style="margin-top: 0.5cm; margin-left: 4.5cm">
+                    <a style="margin-left: 0.5cm" onclick="killAjax()" class="btn btn-primary" >Final Result</a> &nbsp;
                     <a href="/" class="btn btn-primary">New Poll</a>
                     <form action="/get_hostname/" method="GET"><br>{% csrf_token %}
-                        <input name="fullname" type="submit" class="btn btn-primary" value="Stop Poll">
+                        <input style="margin-left: 2.20cm" name="fullname" type="submit" class="btn btn-primary" value="Stop Poll">
                     </form>
-
+                </div>
+                <div color="red" style="padding-left: 2cm;">
+                        <font color="white"><br><b>Important Note:</b> <br>
+                        Please do not try to create more than one polls at a time. Since this app uses a<br>
+                        Twilio trail account, it only has one phone number for recieving SMS messages.<br> 
+                        If you create more than one poll at a time, you might see the app behave erroneously.</font> 
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="container" style="width: 400px; height: 200px;
-                margin-right:30%;padding-top: .76cm;">
+                margin-right:30%;padding-top: 20px;">
 
                         <p style="font-size: 19px"><b>Poll Information:</b></p>
                         <p><b>Phone Number: +1-650-826-3017</b></p>
                         <p>
-                            <b>Question: {{ poll_data.Poll_Title }}</b><br><br>
-                            <b>Options:</b><br>
+                            <b>Poll Question: {{ poll_data.Poll_Title }}</b><br><br>
+                            <b>Poll Options:</b><br>
                             {{ poll_data.Option1 }}<br>
                             {{ poll_data.Option2 }}<br>
                             {{ poll_data.Option3 }}<br>
@@ -123,13 +144,26 @@
                             {{ poll_data.Option5 }}<br>
                         </p>
                         <p>
-                            <b>Guidelines:</b> To vote, simply create a SMS with one <br>
-                            of the options above and  send it to +1-650-826-3017.<br>
-                        </p>
+                            <b>Guidelines:</b> <br>
+                            <ul>
+                            <li> To vote, simply create a SMS with one of the options above and 
+                                send it to +1-650-826-3017. </li>
 
+                            <li>When you want to stop the poll click on "Stop Poll" button. This will stop receiving any more SMS. The page will be reloaded.</li>
+
+                            <li>Once the page reloads, click on "Final Result" button to view the final poll count </li>
+                            </ul>
+                            
+                        </p>
                 </div>
             </div>
         </div>
     </div>
+    <div  class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container">
+      <p class="navbar-text pull-left">© 2014 - Developed By <a href="http://linkd.in/13YH1wk">Sarvesh Sadhoo</a> & <a href="https://www.linkedin.com/in/akshaymattoo">Akshay Mattoo</a>
+      </p>
+    </div>
+  </div>
 </body>
 </html>
