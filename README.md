@@ -14,6 +14,3 @@ Python, Django, Highchart.js, Twilio API, PostgreSQL, Heroku
 ![](https://github.com/srv89/Twilio-Voting-App/blob/master/images/5.png)
 ![](https://github.com/srv89/Twilio-Voting-App/blob/master/images/6.png)
 
-#####Note:
-Since the app uses a free Twilio number only one poll can be done at a time, as Twilio provides only one number for every free account. 
-In the future we plan to take this app further by adding features like user login with a Twilio number assigned to each user, poll logs for history and more.
