@@ -13,5 +13,4 @@ urlpatterns = patterns('',
     url(r'^get_hostname/$', views.get_hostname),
     url(r'^disclosure/$', views.disclosure),
    
-
 )

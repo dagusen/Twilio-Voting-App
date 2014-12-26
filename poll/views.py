@@ -9,7 +9,7 @@ from django.template import RequestContext, Context
 
 # Create your views here.
 def poll(request):
-    open('/app/poll/static/data.json', 'w').close()
+    open('/app/static/data.json', 'w').close()
     form = PollForm()
     try:
         clear_message()

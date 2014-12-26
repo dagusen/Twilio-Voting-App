@@ -15,13 +15,8 @@ PROJECT_PATH = os.path.dirname(os.path.realpath(__file__))
 
 STATIC_PATH = os.path.join(PROJECT_PATH, 'static')
 
-
 STATICFILES_DIRS = (
     STATIC_PATH,
-)
-
-STATICFILES_DIRS = (
-    os.path.join(PROJECT_PATH, 'static'),
 )
 
 STATICFILES_FINDERS = (
@@ -67,7 +62,7 @@ TEMPLATE_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
 )
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [".herokuapp.com","*"]
 
 
 # Application definition
@@ -102,10 +97,10 @@ WSGI_APPLICATION = 'pollapp.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '',                      # Or path to database file if using sqlite3.
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
+        'NAME': 'd39i9k0kidfokj',                      # Or path to database file if using sqlite3.
+        'USER': 'ultzdshyzxutjs',
+        'PASSWORD': 'ALnfwvAOZklHXPgYW65ouezYfk',
+        'HOST': 'ec2-54-235-80-55.compute-1.amazonaws.com',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '5432',                      # Set to empty string for default. Not used with sqlite3.
     }
 }
@@ -128,4 +123,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = ''
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
+# Static asset configuration'
+

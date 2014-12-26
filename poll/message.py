@@ -5,14 +5,14 @@ from pollapp import settings
 from poll.models import Poll
 import threading
 
-twilio_account_id = ""
-twilio_token = ""
+account = "AC1f6b644fbf5a7b7e5a283dd4a12cce7c"
+token = "dc8c53f98d91a2ba9f8f9368a1913aa2"
 
-client = TwilioRestClient(twilio_account_id, twilio_token)
+client = TwilioRestClient(account, token)
 
 t= None
 def clear_message():
-    for message in client.messages.list(to=+100000000000): # Twilio Number
+    for message in client.messages.list(to=+16508263017):
         message.delete_instance()
 
 
@@ -49,13 +49,15 @@ def get_twilio_msg():
         to_append = [str(poll_opt5), 0]
         json_array.append(to_append)
 
-    for message in client.messages.list(to=+10000000000): # Twilio Number
+    for message in client.messages.list(to=+16508263017):
         for data in json_array:
+            print "Message Body:", message.body.lower().replace(" ", "")
+            print "Data:", data[0].lower().replace(" ", "")
             if message.body.lower().replace(" ", "") == data[0].lower().replace(" ", ""):
                 print "Ok"
                 data[1] += 1
     json_data = json.dumps(json_array)
-    with open('/app/poll/static/data.json', 'w') as json_output:
+    with open('/app/static/data.json', 'w') as json_output:
         json_output.write(json_data)
 
     t = threading.Timer(5, get_twilio_msg)
@@ -65,8 +67,11 @@ def get_twilio_msg():
 def kill_thread():
     try:
         global t
+        #print "Kill Thread Called"
+        #print t.name
         t.cancel()
         t.join()
+        #print "Thread Killed"
         return
     except:
         return
