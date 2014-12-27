@@ -5,10 +5,10 @@ from pollapp import settings
 from poll.models import Poll
 import threading
 
-account = "AC1f6b644fbf5a7b7e5a283dd4a12cce7c"
-token = "dc8c53f98d91a2ba9f8f9368a1913aa2"
+twilio_account = ""
+twilio_token = ""
 
-client = TwilioRestClient(account, token)
+client = TwilioRestClient(twilio_account, twilio_token)
 
 t= None
 def clear_message():
